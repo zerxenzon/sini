@@ -221,11 +221,11 @@ int OnInit()
     }
     
     // Check Hedging capability
-    ENUM_ACCOUNT_TRADE_MODE tradeMode = (ENUM_ACCOUNT_TRADE_MODE)AccountInfoInteger(ACCOUNT_TRADE_MODE);
+    ENUM_ACCOUNT_MARGIN_MODE marginMode = (ENUM_ACCOUNT_MARGIN_MODE)AccountInfoInteger(ACCOUNT_MARGIN_MODE);
     
     if(EnableHedging)
     {
-        if(tradeMode == ACCOUNT_TRADE_MODE_HEDGE)
+        if(marginMode == ACCOUNT_MARGIN_MODE_RETAIL_HEDGING)
         {
             canHedge = true;
             Print("✅ HEDGE Account Detected - Hedging Enabled!");
@@ -234,7 +234,7 @@ int OnInit()
         {
             canHedge = false;
             Print("⚠️ WARNING: NETTING Account Detected");
-            Print("⚠️ Current mode: ", EnumToString(tradeMode));
+            Print("⚠️ Current mode: ", EnumToString(marginMode));
             Print("⚠️ Hedging disabled, will use AUTO REVERSE instead");
         }
     }
